@@ -1,0 +1,343 @@
+/*header*/
+
+.header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  &:after{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, .95);
+    z-index: 1500;
+    opacity: 0;
+    transition: opacity .5s;
+    transform: scale(0);
+  }
+  .nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 4rem;
+    .menu{
+      position: fixed;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      background: $clr-dark;
+      border-radius: 0.8rem;
+      z-index: 99999;
+      transition: 0.5s ease;
+      padding: 5rem;
+      .nav-link{
+        letter-spacing: 1px;
+      }
+    }
+    .menu, .nav-list{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .logo-box{
+      min-width: 10.8rem;
+    }
+    .menu-toggle-icon{
+      cursor: pointer;
+    }
+    .menu-toggle-close{
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+  }
+  .menu.menu-opened{
+    top: 10rem;
+  }
+
+}
+.menu-opened.header::after{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/*Hero section*/
+
+.hero{
+  position: relative;
+  height: 100vh;
+  &:after{
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: linear-gradient(135deg, rgba(0,0,0, .6), transparent 77%);
+    z-index: 50;
+  }
+  &-data{
+    padding-top: 15rem;
+    position: relative;
+    z-index: 100;
+  }
+
+  .parallax-img{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 60rem;
+    object-fit: cover;
+    object-position: 30% 50%;
+  }
+  .parallax-img-bottom{
+    top: 55%;
+    z-index: 110;
+  }
+  .parallax-img-middle{
+  top: 35%;
+  }
+  .parallax-img-top{
+  top: 0;
+  }
+}
+
+/*Hiking info*/
+.hiking-information{
+  position: relative;
+  margin-top: -12rem;
+  z-index: 500;
+  .card{
+    gap: 6.4rem;
+    margin-bottom: 12rem;
+    &-info{
+      position: relative;
+      .count{
+        font-size: 10rem;
+        font-weight: bold;
+        opacity: 0.1;
+        position: absolute;
+        left: -2rem;
+        z-index: -1;
+      }
+    }
+    &-image{
+      width: 100%;
+      height: 32rem;
+      object-fit: cover;
+    }
+    &-description{
+      line-height: 2.8rem;
+      margin-bottom: var(--margin-bottom-md);
+    }
+    .card-image.frame-position-center{
+      object-position:  50% 100%;
+    }
+
+  }
+}
+/*Footer*/
+.footer{
+  padding: 4rem 0 5rem;
+  &-container{
+    row-gap: 3.2rem;
+    .brand-information{
+      order: 1;
+      & > *{
+        margin-bottom: var(--margin-bottom-md);
+      }
+      .copyright{
+        font-size: var(--font-size-md);
+        opacity: 0.8;
+        margin-bottom: 0;
+      }
+    }
+    .brand-information, .footer-nav-group{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &-nav-title{
+    color: $clr-accent;
+    font-size: 2rem;
+    margin-bottom: var(--margin-bottom-md);
+  }
+  &-nav-link{
+    margin-bottom: var(--margin-bottom-sm);
+  }
+  &-nav{
+    order: 0;
+    gap: var(--margin-bottom-sm);
+  }
+}
+
+@media(min-width: 768px){
+  :root{
+    --font-size-xl: 5.8rem;
+    --container-spacing: 0 8rem;
+  }
+  /*Hero*/
+  .hero{
+    height: 108vh;
+    .parallax-img{
+      height: auto;
+    }
+    .parallax-img-bottom{
+      top: 45%;
+    }
+    .parallax-img-middle{
+      top: 30%;
+    }
+  }
+  /*Hiking*/
+  .card{
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 6.4rem;
+    margin-bottom: 20rem;
+    &-image{
+      grid-column: 1/-1;
+      width: 60rem;
+      height: 42rem;
+      justify-self: center;
+    }
+    &-info{
+      grid-column: 1/-1;
+      .count{
+        font-size: 20rem;
+        left: -8rem;
+      }
+      .tagline{
+        margin-left: 9.5rem!important;
+        &:before{
+          width: 7.2rem;
+          left: -9rem;
+        }
+      }
+    }
+    &-title{
+      font-size: 6.4rem;
+    }
+  }
+
+  /*Footer*/
+  .footer-container{
+    grid-template-columns: .75fr 1fr;
+    column-gap: 6.4rem;
+    .brand-information{
+      order: 0;
+      max-width: 30rem;
+    }
+  }
+  .footer-nav{
+    order: 1;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 6.4rem;
+  }
+  .footer-nav-link:last-child{
+    margin-bottom: 0;
+  }
+  .copyright{
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+}
+@media(min-width: 991px){
+  :root{
+    --font-size-xl: 7.5rem;
+  }
+ .header .nav .menu{
+    position: initial;
+    transform: initial;
+    width: initial;
+    background-color: initial;
+    padding: initial;
+    border-radius: initial;
+    transition: initial;
+    margin-left: initial;
+  }
+  .header .nav .menu, .header .nav .nav-list{
+    flex-direction: row;
+    gap: 0;
+  }
+  .lg-screen-hidden, .menu-toggle-icon{
+    display: none;
+  }
+  .sm-screen-hidden{
+    display: block;
+  }
+  .nav-link{
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.8rem 2.4rem;
+  }
+  .account-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    i{
+      font-weight: 300;
+    }
+  }
+  .btn, .btn i, .nav-link{
+    transition: transform 0.5s;
+    &:hover{
+      color: $clr-accent;
+    }
+  }
+  .btn-scroll-down:hover i{
+    transform: translateY(0.5rem);
+  }
+  .btn-accent:hover i{
+    transform: translateX(0.5rem);
+  }
+  .hero{
+    .parallax-img-bottom{
+      top: 60%;
+    }
+    .parallax-img-middle{
+      top: 40%;
+    }
+    .hero-data{
+      top: 20%;
+      max-width: 79rem;
+      justify-self: center;
+    }
+  }
+
+  .hiking-information{
+    margin-top: 0;
+    padding-top: 20rem;
+    .card{
+      column-gap: 8.1rem;
+      &-image{
+        grid-column: initial;
+        order: 1;
+        width: 48rem;
+        height: 68rem;
+        justify-self: end;
+      }
+      .order-first{
+        order: 0;
+        justify-self: start;
+      }
+      &-info{
+        grid-column: initial;
+      }
+    }
+  }
+
+  .footer-container{
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 0;
+    .footer-nav-group{
+      justify-self: end;
+    }
+  }
+
+}
